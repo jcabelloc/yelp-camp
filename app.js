@@ -12,7 +12,7 @@ var express     = require("express"),
 
 // Requiring routes
 var commentRoutes       = require("./routes/comments"),
-    campgroundRoutes    = require("./routes/campogrounds"),
+    campgroundRoutes    = require("./routes/campgrounds"),
     indexRoutes         = require("./routes/index");
 
 mongoose.connect("mongodb://localhost/yelpDB");
@@ -37,6 +37,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Adds currentUser to every single template
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
