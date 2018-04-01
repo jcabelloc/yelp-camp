@@ -12,14 +12,14 @@ var express     = require("express"),
     seedDB      = require("./seeds");
 
 const PORT = process.env.PORT || 3000;
+const DBURL = process.env.DATABASEURL || "mongodb://localhost/yelpDB";
 
 // Requiring routes
 var commentRoutes       = require("./routes/comments"),
     campgroundRoutes    = require("./routes/campgrounds"),
     indexRoutes         = require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/yelpDB");
-mongoose.connect("mongodb://app:app123@ds113179.mlab.com:13179/yelpdatabase");
+mongoose.connect(DBURL);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
